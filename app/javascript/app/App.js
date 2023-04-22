@@ -22,7 +22,7 @@ const App = () => {
         </section>
 
         <footer>
-          Example heading <Badge bg="secondary">Footer</Badge>
+          Example <Badge bg="secondary">Footer</Badge>
         </footer>
       </div>
     </Fragment>
