@@ -1,0 +1,16 @@
+header {
+  .header-cta {
+    padding: 0.7rem 0;
+    background-image: url(/media/images/Mask-Group-4.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .cta-start {
+      transform: scaleX(-1)
+    }
+
+    svg {
+      margin-bottom: 3px;
+    }
+  }
+}
