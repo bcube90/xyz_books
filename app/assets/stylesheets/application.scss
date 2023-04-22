@@ -1,5 +1,16 @@
 // Entry point for your Sass build
 
+@import "custom";
+@import "style";
 @import "bootstrap/scss/bootstrap";
 
-@import "style"
+@font-face {
+  font-family: GilroyRegular;
+  src: url(/media/fonts/Gilroy-Regular.woff) format("woff"),
+    url(/media/fonts/Gilroy-Regular.woff2) format("woff2"), 
+    url(/media/fonts/Gilroy-Regular.ttf) format("truetype");
+}
+
+:root {
+  --bs-body-font-family:        'GilroyRegular';
+}

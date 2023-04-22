@@ -1,7 +1,7 @@
 section.header-cta {
   padding: 0.7rem 0;
   background-image: url(/media/images/Mask-Group-4.png);
-  background-size: cover;
+  background-size: 100% 2.932rem;
   background-repeat: no-repeat;
 
   .cta-start {
@@ -10,5 +10,54 @@ section.header-cta {
 
   svg {
     margin-bottom: 3px;
+  }
+}
+
+header {
+  font-weight: 900;
+
+  nav {
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+  }
+
+  form {
+    .seach-icon {
+      font-size: 14px !important;
+      position: absolute;
+      top: 8px;
+      left: 20px;
+    }
+    #search-input {
+      font-size: 14px;
+      padding: 0.5rem;
+      padding-left: 2.8rem;
+    }
+  }
+
+  #navbar-container {
+    flex-grow: 0;
+
+    .navbar-nav {
+      font-size: 14px;
+      .nav-link {
+        color: black;
+
+        &:hover {
+          color: var(--bs-nav-link-hover-color);
+        }
+      }
+    }
+
+    .localization {
+      font-size: 14px;
+      svg {
+        margin-top: -3px;
+      }
+    }
+
+    button#header-contact {
+      font-size: 14px;
+    }
   }
 }
