@@ -22,11 +22,11 @@ $btn-border-radius:           0.575rem;
       }
       .header-actions {
         width: 50%;
-        display: flex;
         margin: 0.5rem 0;
         padding: 0.5rem 0;
         flex-wrap: wrap;
         flex-direction: column;
+        align-items: flex-end;
         gap: 1rem;
         position: absolute;
         top: 0;
