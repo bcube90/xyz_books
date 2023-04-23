@@ -1,9 +1,9 @@
-import React, {Fragment} from "react";
+import React from "react";
 import Alert from 'react-bootstrap/Alert';
 
 const Banner = () => {
   return (
-    <Fragment>
+    <div className="container-lg">
       <Alert variant="success">
           <Alert.Heading>Hey, nice to see you</Alert.Heading>
           <p>
@@ -17,7 +17,7 @@ const Banner = () => {
             nice and tidy.
           </p>
         </Alert>
-    </Fragment>
+    </div>
   )
 }
 

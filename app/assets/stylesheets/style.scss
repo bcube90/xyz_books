@@ -63,3 +63,33 @@ header {
     }
   }
 }
+
+footer {
+  ul.social-media {
+    list-style: none;
+    display: inline;
+
+    li {
+      display: inline-block;
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+
+      a  {
+        .social-link {
+          width: 50px;
+          height: 50px;
+          background-color: #f2f2ff;
+          padding: 12px 18px;
+          border-radius: 50%;
+
+          svg {
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+    }
+  }
+}

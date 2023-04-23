@@ -5,7 +5,7 @@ import { Nav, Navbar, Button, Form } from 'react-bootstrap';
 export default HeaderLayout = () => {
   return (
     <Fragment>
-      <header>
+      <header className="container-lg">
         <Navbar bg="white" expand="lg">
           <Navbar.Brand className="m-0" href="/">
             <ReactSVG src="/media/svg/sample-logo.svg" />
