@@ -65,9 +65,46 @@ header {
 }
 
 footer {
+  margin: 90px 0 50px;
+  
+  #branding {
+    .brand svg {
+      width: 170px;
+      height: 67px;
+    }
+
+    form {
+      input[type="email"] {
+        padding: 0.375rem 1.8rem 0.375rem 1.5rem;
+      }
+
+      .email-icon {
+        position: absolute;
+        transform: rotate(-90deg);
+        top: 7px;
+        right: 9px;
+      }
+    }
+  }
+
+  .footer-links ul {
+    padding: 0;
+    list-style: none;
+
+    li {
+      padding: 0.5rem 0;
+      font-size: 14px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
   ul.social-media {
     list-style: none;
     display: inline;
+    padding: 0;
 
     li {
       display: inline-block;
@@ -92,4 +129,33 @@ footer {
       }
     }
   }
+
 }
+
+html:not([data-scroll="calc(100vh - 92px)"]) button#support-chat {
+  top: calc(100vh - 92px);
+}
+
+
+button#support-chat {
+  position: fixed;
+  // top: calc(100vh - 250px);
+  right: 0.8rem;
+  width: 80px;
+  height: 80px;
+  padding: 21px 21px;
+
+  background-color: #5fd2fa;
+  border-color: #5fd2fa;
+
+  &:hover {
+    background-color: #54bee4;
+    border-color: #54bee4;
+  }
+
+  .support-chat-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+}
+

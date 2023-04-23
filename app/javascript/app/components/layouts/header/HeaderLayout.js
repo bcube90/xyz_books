@@ -14,7 +14,7 @@ export default HeaderLayout = () => {
           <Form className="position-relative">
             <Form.Group controlId="search-input">
               <ReactSVG className="seach-icon" src="/media/svg/Icon-feather-search.svg" />
-              <Form.Control className="rounded-pill" bsPrefix="border-primary form-control" variant="primary" type="email" placeholder="Search" />
+              <Form.Control className="rounded-pill" bsPrefix="border-primary form-control" variant="primary" type="text" placeholder="Search" />
             </Form.Group>
           </Form>
           
