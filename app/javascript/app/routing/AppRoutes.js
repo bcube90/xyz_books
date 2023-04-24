@@ -5,7 +5,7 @@ import TopBarProgress from 'react-topbar-progress-indicator';
 import { App } from '../App';
 
 const AppRoutes = () => {
-  const HomePage = lazy(() => import('../components/pages/home/HomePage'))
+  const HomePage = lazy(() => import('../pages/home/HomePage'))
 
   return (
     <BrowserRouter>

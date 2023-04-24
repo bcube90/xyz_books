@@ -2,6 +2,8 @@ html, body, #root {
   background-color: #fcfcfc;
 }
 
+// HEADER
+
 section.header-cta {
   font-weight: 900;
   position: fixed;
@@ -104,13 +106,21 @@ header {
   }
 }
 
+// CONTENT
+
 section#main-content {
   margin-top: 7.545rem;
 
   &.scrolled {
     margin-top: 6.073rem;
+
+    .avail-banner {
+      opacity: 0;
+    }
   }
 }
+
+// FOOTER
 
 footer {
   padding: 90px 0 50px;
@@ -180,10 +190,7 @@ footer {
 
 }
 
-html:not([data-scroll="calc(100vh - 92px)"]) button#support-chat {
-  top: calc(100vh - 92px);
-}
-
+// CHAT
 
 button#support-chat {
   position: fixed;
@@ -204,6 +211,49 @@ button#support-chat {
   .support-chat-icon svg {
     width: 36px;
     height: 36px;
+  }
+}
+
+// SPACING
+.w-80 {
+  width: 80%;
+}
+
+// COLORS
+.text-yellow {
+  color: var(--yellow);
+}
+
+// CARDS
+
+.book-card {
+  .image-wrapper {
+    padding: 0.8rem;
+    background-image: linear-gradient(180deg, #fcfcfc 65%, #c5cedc);
+    border: solid #fcfcfc 1px;
+    border-radius: 6px;
+  }
+
+  .card-body {
+    padding: 0.8rem;
+    a {
+      color: var(--light-blue);
+      text-decoration: none;
+      cursor: pointer;
+      
+      &:hover {
+        color: var(--light-blue-hover);
+        span svg {
+          fill: var(--light-blue-hover);
+          stroke: var(--light-blue-hover);;
+        }
+      }
+      
+      span svg {
+        transform: rotate(-90deg);
+        margin-top: -3px;
+      }
+    }
   }
 }
 

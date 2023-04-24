@@ -2,7 +2,31 @@
   background-image: url("/media/images/banner-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 7rem 0 5rem;
+  padding: 5rem 0 3rem;
+  position: relative;
+
+  .avail-banner {
+    position: absolute;
+    right: 112px;
+    top: -51px;
+    transition: opacity 0.25s;
+    font-family: var(--bs-caveat);
+    line-height: 1;
+    text-align: end;
+
+    p {
+      width: 150px;
+      display: inline-block;
+      margin: 0.8rem 0.8rem 0 0;
+      transform: rotate(-12deg);
+      color: #60d2fa;
+    }
+
+    span {
+      position: absolute;
+      top: -0.8rem;
+    }
+  }
 
   .hero-illustration svg {
     width: inherit;
@@ -21,7 +45,11 @@
       span + div {
         display: inline-block;
         margin-left: 0.5rem;
-        transform: rotate(-90deg);
+
+        svg {
+          transform: rotate(-90deg);
+          margin-top: -3px;
+        }
       }
     }
   }
@@ -36,7 +64,7 @@
   }
   
   .clients-title span {
-    color: #f6c644;
+    color: var(--yellow);
   }
 
   .clients {
@@ -62,6 +90,57 @@
           margin: 0 0;
         }
       }
+    }
+  }
+}
+
+.explore {
+  padding: 6rem 0 0;
+
+  .explore-banner {
+    position: absolute;
+    right: -55px;
+    top: -61px;
+    transition: opacity 0.25s;
+    font-family: var(--bs-caveat);
+    line-height: 1;
+    text-align: end;
+    width: 190px;
+
+    p {
+      width: 150px;
+      display: inline-block;
+      transform: rotate(-12deg);
+      color: #60d2fa;
+    }
+    
+    span {
+      position: absolute;
+      top: 15px;
+      left: 0;
+
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  h1.title + p {
+    width: 57%;
+  }
+}
+
+.reasons-to-shop {
+  padding: 4rem 0 0;
+  background-color: #061a36;
+
+  h6 {
+    min-height: 72px;
+  }
+  .home-reason {
+    svg {
+      width: 58px;
+      height: 58px;
     }
   }
 }

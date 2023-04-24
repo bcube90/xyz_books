@@ -9,19 +9,37 @@ $btn-padding-x-lg:            2rem;
 $btn-border-radius:           0.575rem;
 $btn-font-size-lg:            1.1rem;
 
-@import "custom";
-@import "style";
 @import "bootstrap/scss/bootstrap";
+@import "responsive";
+@import "style";
 
 @import "pages/home.scss";
 
 @font-face {
-  font-family: GilroyRegular;
-  src: url(/media/fonts/Gilroy-Regular.woff) format("woff"),
-    url(/media/fonts/Gilroy-Regular.woff2) format("woff2"), 
-    url(/media/fonts/Gilroy-Regular.ttf) format("truetype");
+  font-family: Gilroy;
+  src: url("/media/fonts/Gilroy-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url("/media/fonts/Gilroy-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: Caveat;
+  src: url("/media/fonts/Caveat-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 
 :root {
-  --bs-body-font-family:        'GilroyRegular';
+  --bs-body-font-family:        Gilroy, arial, sans-serif;;
+  --bs-caveat:                  Caveat;
+  --light-blue:                 #60d2fa;
+  --light-blue-hover:           #4cb4da;
+  --yellow:                     #f6c644;
 }
