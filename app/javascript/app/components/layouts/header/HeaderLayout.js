@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactSVG } from "react-svg";
 import { Nav, Navbar, Button, Form } from 'react-bootstrap';
 
-import { useThemeMode } from '../ThemeProvider';
+import { useThemeMode } from '../ThemeModeProvider';
 
 export default HeaderLayout = () => {
   const {scrollClass} = useThemeMode();
@@ -10,7 +10,7 @@ export default HeaderLayout = () => {
   return (
     <header className={scrollClass()}>
       <div className="container-lg">
-        <Navbar bg="white" expand="lg">
+        <Navbar expand="lg">
           <Navbar.Brand className="m-0" href="/">
             <ReactSVG src="/media/svg/sample-logo.svg" />
           </Navbar.Brand>

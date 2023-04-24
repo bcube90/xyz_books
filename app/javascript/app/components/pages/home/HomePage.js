@@ -1,10 +1,10 @@
 import React, {Fragment} from "react";
-import { Banner } from "./Banner";
+import { Hero } from "./Hero";
 
 const HomePage = () => {
   return (
     <Fragment>
-      <Banner />
+      <Hero />
     </Fragment>
   );
 }

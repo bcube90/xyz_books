@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from "react";
 import { ReactSVG } from "react-svg";
 import { Button } from "react-bootstrap";
 
-import { useThemeMode } from "./ThemeProvider";
+import { useThemeMode } from "./ThemeModeProvider";
 
 export default SupportChat = () => {
   const [state, updateState] = useState({
@@ -40,6 +40,8 @@ export default SupportChat = () => {
     
     updateState({...state, top: window.innerHeight - bottomSpacing});
   }
+
+  // TODO: move scroll listener to THemeModeProvider together with debounce
 
   useEffect(() => {
     updatePosition()

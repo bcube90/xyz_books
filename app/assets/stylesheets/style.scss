@@ -1,3 +1,7 @@
+html, body, #root {
+  background-color: #fcfcfc;
+}
+
 section.header-cta {
   font-weight: 900;
   position: fixed;
@@ -11,6 +15,7 @@ section.header-cta {
 
   &.scrolled {
     padding: 0.5rem;
+    font-size: 14px;
   }
 
   .cta-start {
@@ -28,6 +33,7 @@ header {
   top: 2.908rem;
   z-index: 100;
   width: 100%;
+  background-color: #fcfcfc;
 
   &.scrolled {
     top: 2.51rem;
@@ -93,16 +99,21 @@ header {
 
     button#header-contact {
       font-size: 14px;
+      box-shadow: 0 0.5rem 1rem rgb(97 96 246 / 45%);
     }
   }
 }
 
-section#main {
+section#main-content {
   margin-top: 7.545rem;
+
+  &.scrolled {
+    margin-top: 6.073rem;
+  }
 }
 
 footer {
-  margin: 90px 0 50px;
+  padding: 90px 0 50px;
   
   #branding {
     .brand svg {

@@ -3,7 +3,6 @@ import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom';
 import TopBarProgress from 'react-topbar-progress-indicator';
 
 import { App } from '../App';
-// import HomePage from '../components/pages/home/HomePage';
 
 const AppRoutes = () => {
   const HomePage = lazy(() => import('../components/pages/home/HomePage'))

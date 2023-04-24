@@ -1,0 +1,67 @@
+.hero-banner {
+  background-image: url("/media/images/banner-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 7rem 0 5rem;
+
+  .hero-illustration svg {
+    width: inherit;
+  }
+
+  .hero-1, .hero-2 {
+    h1 {
+      font-size: 50px;
+    }
+
+    h2 {
+      font-size: 35px;
+    }
+
+    button {
+      span + div {
+        display: inline-block;
+        margin-left: 0.5rem;
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  .hero-1 button {
+    box-shadow: 0 0.5rem 1rem rgb(97 96 246 / 45%);
+  }
+
+  .hero-2 button {
+    color: #5fd2fa;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 45%);
+  }
+  
+  .clients-title span {
+    color: #f6c644;
+  }
+
+  .clients {
+    &:first-child svg {
+      fill: #fff;
+    }
+
+    .col-12 {
+      &:first-child {
+        svg path {
+          fill: white;
+        }
+      }
+
+      .client {
+        div {
+          svg {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
+        }
+        h6 {
+          margin: 0 0;
+        }
+      }
+    }
+  }
+}
