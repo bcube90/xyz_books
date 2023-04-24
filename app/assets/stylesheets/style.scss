@@ -1,8 +1,17 @@
 section.header-cta {
+  font-weight: 900;
+  position: fixed;
+  top: 0;
+  z-index: 101;
   padding: 0.7rem 0;
   background-image: url(/media/images/Mask-Group-4.png);
   background-size: 100% 2.932rem;
   background-repeat: no-repeat;
+  transition: padding 0.25s;
+
+  &.scrolled {
+    padding: 0.5rem;
+  }
 
   .cta-start {
     transform: scaleX(-1)
@@ -15,10 +24,34 @@ section.header-cta {
 
 header {
   font-weight: 900;
+  position: fixed;
+  top: 2.908rem;
+  z-index: 100;
+  width: 100%;
+
+  &.scrolled {
+    top: 2.51rem;
+    box-sizing: border-box;
+    box-shadow: 0 0 .5em rgba(0, 0, 0, .5);
+
+    nav {
+      padding: 0.25rem;
+      
+      .navbar-brand svg {
+        width: 100px;
+        height: 38px;
+      }
+    }
+  }
 
   nav {
     flex-wrap: wrap !important;
     justify-content: space-between !important;
+    transition: padding 0.25s;
+
+    .navbar-brand svg {
+      transition: width 0.25s;
+    }
   }
 
   form {
@@ -62,6 +95,10 @@ header {
       font-size: 14px;
     }
   }
+}
+
+section#main {
+  margin-top: 7.545rem;
 }
 
 footer {
@@ -139,11 +176,11 @@ html:not([data-scroll="calc(100vh - 92px)"]) button#support-chat {
 
 button#support-chat {
   position: fixed;
-  // top: calc(100vh - 250px);
   right: 0.8rem;
   width: 80px;
   height: 80px;
   padding: 21px 21px;
+  transition: top .1s;
 
   background-color: #5fd2fa;
   border-color: #5fd2fa;

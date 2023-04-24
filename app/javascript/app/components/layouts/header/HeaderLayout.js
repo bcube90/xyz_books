@@ -1,11 +1,15 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import { ReactSVG } from "react-svg";
 import { Nav, Navbar, Button, Form } from 'react-bootstrap';
 
+import { useThemeMode } from '../ThemeProvider';
+
 export default HeaderLayout = () => {
+  const {scrollClass} = useThemeMode();
+
   return (
-    <Fragment>
-      <header className="container-lg">
+    <header className={scrollClass()}>
+      <div className="container-lg">
         <Navbar bg="white" expand="lg">
           <Navbar.Brand className="m-0" href="/">
             <ReactSVG src="/media/svg/sample-logo.svg" />
@@ -41,7 +45,7 @@ export default HeaderLayout = () => {
             </div>
           </Navbar.Collapse>
         </Navbar>
-      </header>
-    </Fragment>
+      </div>
+    </header>
   );
 }

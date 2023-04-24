@@ -2,17 +2,38 @@ import React, {useState, useEffect, useRef} from "react";
 import { ReactSVG } from "react-svg";
 import { Button } from "react-bootstrap";
 
+import { useThemeMode } from "./ThemeProvider";
+
 export default SupportChat = () => {
   const [state, updateState] = useState({
     top: window.innerHeight - 92
   });
 
-  const docElement = useRef(document.documentElement)
+  const {updateScrollPosition} = useThemeMode()
+
+  const debounce = (fn) => {
+    let frame;
+    return (...params) => {
+      
+      if (frame) { 
+        cancelAnimationFrame(frame);
+      }
+      
+      frame = requestAnimationFrame(() => {
+        fn(...params);
+      });
+  
+    } 
+  };
+
+  const docElement = useRef(document.documentElement);
 
   const updatePosition = () => {
     const {scrollTop, scrollHeight} = docElement.current;
     const endOfPage = scrollHeight - scrollTop;
     let bottomSpacing = 284;
+
+    updateScrollPosition(scrollTop);
 
     if((endOfPage - (bottomSpacing/2)) >= (window.innerHeight))
       bottomSpacing = 100
@@ -22,7 +43,7 @@ export default SupportChat = () => {
 
   useEffect(() => {
     updatePosition()
-    window.addEventListener("scroll", updatePosition)
+    window.addEventListener("scroll", debounce(updatePosition), {passive: true})
 
     return () => window.removeEventListener("scroll", updatePosition)
   }, []);
