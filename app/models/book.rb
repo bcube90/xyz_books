@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+  include Supports::BookSupport
+
   has_many :authors_books, dependent: :destroy
   has_many :authors, through: :authors_books
   belongs_to :publisher
