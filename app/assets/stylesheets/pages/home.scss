@@ -95,7 +95,7 @@
 }
 
 .explore {
-  padding: 6rem 0 0;
+  padding: 6rem 0 4rem;
 
   .explore-banner {
     position: absolute;
@@ -125,22 +125,114 @@
     }
   }
 
+  .books-holder {
+    z-index: 10;
+  }
+
   h1.title + p {
     width: 57%;
   }
 }
 
 .reasons-to-shop {
-  padding: 4rem 0 0;
+  padding: 18rem 0 7rem;
   background-color: #061a36;
+  margin-top: -285px;
+  transform: skewY(-3deg);
 
   h6 {
     min-height: 72px;
   }
+
+  .reasons-container {
+    transform: skewY(3deg);
+  }
+
   .home-reason {
     svg {
       width: 58px;
       height: 58px;
+    }
+  }
+}
+
+.home-statement {
+  padding: 8rem 0 8rem;
+
+  .user-position {
+    font-size: 13px;
+  }
+
+  .company {
+    h5 {
+      color: $gray-600;
+    }
+    svg {
+      width: 40px;
+      height: 40px;
+      
+      path {
+        fill: $gray-600;
+      }
+    }
+  }
+
+  .user-statement-card {
+    position: relative;
+    margin-top: 80px;
+
+    img {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      top: -45px;
+      z-index: 2;
+      left: calc(50% - 40px);
+    }
+
+    .backdrop {
+      position: absolute;
+      height: 1rem;
+      top: -1rem;
+      background-color: #d9eafd;
+      margin: 0 1rem;
+      width: calc(100% - 2rem);
+      border-top-left-radius: 0.8rem;
+      border-top-right-radius: 0.8rem;
+    }
+
+    .statement-container {
+      p {
+        background-color: #4399f7;
+        padding: 80px;
+        border-radius: 1rem;
+
+        svg {
+          height: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.home-faq {
+  padding: 8rem 0;
+  background-color: #f3f5f8;
+
+  .accordion {
+    --bs-accordion-bg: transparent;
+    --bs-accordion-border-color: none;
+
+    .accordion-item {
+      .accordion-button {
+        background-color: transparent !important;
+        padding: 1rem 0;
+        box-shadow: none;
+      }
+
+      .accordion-body {
+        padding: 1rem 0;
+      }
     }
   }
 }

@@ -9,6 +9,9 @@ $btn-padding-x-lg:            2rem;
 $btn-border-radius:           0.575rem;
 $btn-font-size-lg:            1.1rem;
 
+$accordion-icon-color:               $primary;
+$accordion-icon-color-active:        $primary;
+
 @import "bootstrap/scss/bootstrap";
 @import "responsive";
 @import "style";
@@ -37,9 +40,9 @@ $btn-font-size-lg:            1.1rem;
 }
 
 :root {
-  --bs-body-font-family:        Gilroy, arial, sans-serif;;
-  --bs-caveat:                  Caveat;
-  --light-blue:                 #60d2fa;
-  --light-blue-hover:           #4cb4da;
-  --yellow:                     #f6c644;
+  --bs-body-font-family:          Gilroy, arial, sans-serif;
+  --bs-caveat:                    Caveat;
+  --light-blue:                   #60d2fa;
+  --light-blue-hover:             #4cb4da;
+  --yellow:                       #f6c644;
 }
