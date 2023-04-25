@@ -9,31 +9,11 @@ export default SupportChat = () => {
     top: window.innerHeight - 92
   });
 
-  const {updateScrollPosition} = useThemeMode()
-
-  const debounce = (fn) => {
-    let frame;
-    return (...params) => {
-      
-      if (frame) { 
-        cancelAnimationFrame(frame);
-      }
-      
-      frame = requestAnimationFrame(() => {
-        fn(...params);
-      });
-  
-    } 
-  };
-
-  const docElement = useRef(document.documentElement);
+  const {themeState} = useThemeMode()
 
   const updatePosition = () => {
-    const {scrollTop, scrollHeight} = docElement.current;
-    const endOfPage = scrollHeight - scrollTop;
+    const {endOfPage} = themeState.scroll
     let bottomSpacing = 284;
-
-    updateScrollPosition(scrollTop);
 
     if((endOfPage - (bottomSpacing/2)) >= (window.innerHeight))
       bottomSpacing = 100
@@ -41,14 +21,7 @@ export default SupportChat = () => {
     updateState({...state, top: window.innerHeight - bottomSpacing});
   }
 
-  // TODO: move scroll listener to THemeModeProvider together with debounce
-
-  useEffect(() => {
-    updatePosition()
-    window.addEventListener("scroll", debounce(updatePosition), {passive: true})
-
-    return () => window.removeEventListener("scroll", updatePosition)
-  }, []);
+  useEffect(() => updatePosition(), [themeState.scroll]);
 
   return (
     <Button id="support-chat" className="rounded-circle" style={{top: state.top}}>

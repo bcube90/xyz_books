@@ -1,9 +1,13 @@
-import React, {createContext, useContext, useState, useEffect} from "react";
+import React, {createContext, useContext, useState, useEffect, useRef} from "react";
 
 const defaultThemeState = {
-  scrollPosition: 0,
-  scrollClass: () => {},
-  updateScrollPosition: () => {}
+  themeState: {
+    scroll: {
+      position: 0,
+      endOfPage: 0
+    }
+  },
+  scrollClass: () => {}
 }
 
 const ThemeContext = createContext(defaultThemeState);
@@ -11,22 +15,37 @@ const ThemeContext = createContext(defaultThemeState);
 const useThemeMode = () => useContext(ThemeContext);
 
 const ThemeModeProvider = ({children}) => {
-  const [scrollPosition, setScrollPosition] = useState(defaultThemeState.scrollPosition);
+  const [themeState, setThemeState] = useState(defaultThemeState.themeState);
   
+  const docElement = useRef(document.documentElement);
 
-  const updateScrollPosition = (position) => {
-    if(position == setScrollPosition) return
-    setScrollPosition(position)
+  const scrollClass = () => themeState.scroll.position > 5 ? "scrolled" : ""
+
+  const scrollDetection = () => {
+    const {scrollTop, scrollHeight} = docElement.current;
+    const endOfPage = scrollHeight - scrollTop;
+    const scroll = {position: scrollTop, endOfPage}
+
+    setThemeState({...themeState, ...{scroll: scroll}});
+  }
+
+  const debounce = (fn) => {
+    let frame;
+    return (...params) => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => fn(...params));
+    } 
   };
 
-  const scrollClass = () => scrollPosition > 0 ? "scrolled" : "";
-
   useEffect(() => {
-    setScrollPosition(scrollPosition)
+    scrollDetection()
+
+    window.addEventListener("scroll", debounce(scrollDetection), {passive: true})
+    return () => window.removeEventListener("scroll", scrollDetection)
   }, []);
 
   return (
-    <ThemeContext.Provider value={{scrollPosition, updateScrollPosition, scrollClass}} >
+    <ThemeContext.Provider value={{themeState, setThemeState, scrollClass}} >
       {children}
     </ThemeContext.Provider>
   )
