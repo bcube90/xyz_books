@@ -6,7 +6,7 @@ import { ReasonsToShop } from "./ReasonsToShop";
 import { Statement } from "./Statement";
 import { FAQ } from "./FAQ";
 
-const HomePage = () => {
+const Home = () => {
   return (
     <Fragment>
       <Hero />
@@ -18,4 +18,4 @@ const HomePage = () => {
   );
 }
 
-export default HomePage;
+export default Home;

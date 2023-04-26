@@ -19,7 +19,8 @@ module Supports::BookSupport
           summation += digit * multiplier
         end
 
-        digits << 10 - summation % 10
+        result = 10 - summation % 10
+        digits.push(result > 9 ? 0 : result)
         
         return digits.join unless masked
         return digits.join.scan(ISBN_13_EXPRESSION).flatten.join('-')
@@ -54,15 +55,49 @@ module Supports::BookSupport
     end
 
     def validate_isbn isbn
-      isbn = unmask_isbn(isbn)
-      case isbn
-      when ISBN_13_EXPRESSION, ISBN_10_EXPRESSION, ISBN_9_EXPRESSION then isbn
-      else
-        nil
+      return isbn if validate_isbn_10(isbn)
+      return isbn if validate_isbn_13(isbn)
+      # return nil if isbn.match?(/[^0-9X\-]/ix)
+      return nil
+    end
+
+    def validate_isbn_10 isbn
+      s = t = 0
+      digits = unmask_isbn(isbn).split("")
+      digits.each_with_index do |value, index|
+        digit = value == "X" ? 10 : value.to_i
+        t += digit
+        s += t
       end
+      
+      return s % 11 == 0
+    end
+
+    def validate_isbn_13 isbn
+      multiple = summation = 0
+      digits = unmask_isbn(isbn).split("")
+
+      digits.each_with_index do |value, index|
+        next if (index + 1).odd?
+        multiple += value.to_i
+      end
+
+      summation = multiple * 3
+
+      digits.each_with_index do |value, index|
+        next if (index + 1).even?
+        summation += value.to_i
+      end
+
+      summation % 10 == 0
     end
   end
 
+  def validate_isbn_13
+    multiple = summation = 0
+    digits = unmask_isbn(isbn).split("")
+    digits.filter.with_index{ |value, index| (index + 1).even? }
+  end
 
   def to_isbn_10
     self.class.change_to_isbn_10(isbn_13)

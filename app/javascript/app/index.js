@@ -1,5 +1,5 @@
 import {createRoot} from 'react-dom/client';
-import { AppRoutes } from '../utils/AppRoutes';
+import { AppRoutes } from './routes/AppRoutes';
 import React from 'react';
 import axios from 'axios';
 

@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from "react";
 import { ReactSVG } from "react-svg";
 import { Button } from "react-bootstrap";
 
-import { useThemeMode } from "../../../utils/providers/ThemeModeProvider";
+import { useThemeMode } from "../../utils/providers/ThemeModeProvider";
 
 export default SupportChat = () => {
   const [state, updateState] = useState({

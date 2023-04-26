@@ -14,6 +14,7 @@ class Book < ApplicationRecord
   private
 
   def self.find_by_isbn isbn
+    isbn = unmask_isbn(isbn)
     isbn = change_to_isbn_13(isbn, masked: false) unless isbn.match(ISBN_13_EXPRESSION)
 
     book_table = Book.arel_table
