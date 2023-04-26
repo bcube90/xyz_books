@@ -1,11 +1,11 @@
-import React, {Suspense, lazy} from 'react';
+import React, {lazy} from 'react';
 import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom';
-import TopBarProgress from 'react-topbar-progress-indicator';
 
-import { App } from '../App';
+import { App } from '../app/App';
+import SuspensedView from './SuspensedView';
 
 const AppRoutes = () => {
-  const HomePage = lazy(() => import('../pages/home/HomePage'))
+  const HomePage = lazy(() => import('../app/pages/home/HomePage'))
 
   return (
     <BrowserRouter>
@@ -20,17 +20,6 @@ const AppRoutes = () => {
       </Routes>
     </BrowserRouter>
   );
-}
-
-const SuspensedView = ({children}) => {
-  TopBarProgress.config({
-    barColors: {
-      '0': "#5fd2fa",
-    },
-    barThickness: 2,
-    shadowBlur: 6,
-  })
-  return <Suspense fallback={<TopBarProgress />}>{children}</Suspense>
 }
 
 export {AppRoutes}

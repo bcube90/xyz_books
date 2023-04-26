@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactSVG } from "react-svg";
 import { Nav, Navbar, Button, Form } from 'react-bootstrap';
 
-import { useThemeMode } from '../ThemeModeProvider';
+import { useThemeMode } from '../../../../utils/providers/ThemeModeProvider';
 
 export default HeaderLayout = () => {
   const {scrollClass} = useThemeMode();

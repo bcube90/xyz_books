@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
 
-import { useThemeMode } from "../ThemeModeProvider";
+import { useThemeMode } from "../../../../utils/providers/ThemeModeProvider";
 
 const HeaderBannerCTA = () => {
   const {scrollClass} = useThemeMode()

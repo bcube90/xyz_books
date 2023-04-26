@@ -5,7 +5,7 @@ import FooterLayout from "./components/layouts/footer/FooterLayout";
 import SupportChat from "./components/layouts/SupportChat";
 
 import { HeaderBannerCTA } from "./components/layouts/header/HeaderBannerCTA";
-import { ThemeModeProvider } from "./components/layouts/ThemeModeProvider";
+import { ThemeModeProvider } from "../utils/providers/ThemeModeProvider";
 import { MainContent } from "./components/layouts/MainContent";
 
 
