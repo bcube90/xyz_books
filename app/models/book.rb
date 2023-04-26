@@ -8,13 +8,14 @@ class Book < ApplicationRecord
   has_one :publisher, through: :book_reference, source: :referenceable, source_type: "Publisher"
 
   validate :has_author_and_publisher?
+  validates_uniqueness_of :isbn_13
   validates :title, :isbn_13, :list_price, :publication_year, presence: true
 
   private
 
   def self.find_by_isbn isbn
     isbn = change_to_isbn_13(isbn, masked: false) unless isbn.match(ISBN_13_EXPRESSION)
-    
+
     book_table = Book.arel_table
     q_unmask_isbn = Arel::Nodes::NamedFunction.new(
       "REPLACE", 

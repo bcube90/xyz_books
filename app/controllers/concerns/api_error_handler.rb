@@ -4,6 +4,7 @@ module ApiErrorHandler
   included do
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActionController::BadRequest, with: :render_bad_request
+    rescue_from ActionController::RoutingError, with: :render_not_found_response
   end
 
   def render_not_found_response(exception)
