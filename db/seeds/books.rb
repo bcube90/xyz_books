@@ -11,7 +11,7 @@ module Seeds
           list_price: 1000,
           publication_year: 2004,
           edition: "Book 2",
-          publisher: {name: "Paste Magazine"},
+          publisher: [{name: "Paste Magazine"}],
           authors: [
             {first_name: "Joel", last_name: "Hartse"},
             {first_name: "Hannah", middle_name: "P.", last_name: "Templer"},
@@ -23,7 +23,7 @@ module Seeds
           list_price: 2000,
           publication_year: 2019,
           edition: "Book 1",
-          publisher: {name: "Publishers Weekly"},
+          publisher: [{name: "Publishers Weekly"}],
           authors: [
             {first_name: "Kingsley", last_name: "Amis"},
           ]
@@ -33,7 +33,7 @@ module Seeds
           list_price: 500,
           publication_year: 1990,
           edition: "After School Special",
-          publisher: {name: "Graywolf Press"},
+          publisher: [{name: "Graywolf Press"}],
           authors: [
             {first_name: "Kingsley", last_name: "Amis"},
           ]
@@ -43,7 +43,7 @@ module Seeds
           list_price: 1200,
           publication_year: 2000,
           edition: "After School Special",
-          publisher: {name: "Graywolf Press"},
+          publisher: [{name: "Graywolf Press"}],
           authors: [
             {first_name: "Hannah", middle_name: "P.", last_name: "Templer"},
             {first_name: "Fannie", middle_name: "Peters", last_name: "Flagg"},
@@ -55,7 +55,7 @@ module Seeds
           list_price: 3000,
           publication_year: 2022,
           edition: nil,
-          publisher: {name: "McSweeney's"},
+          publisher: [{name: "McSweeney's"}],
           authors: [
             {first_name: "Rainer", middle_name: "Steel", last_name: "Rilke"}
           ]
@@ -63,19 +63,21 @@ module Seeds
       ]
 
       sample_books.each do |sample_book|
-        sample_book[:publisher_id] = Publisher.find_by(sample_book[:publisher]).id
         book = Book.new sample_book.except(:publisher, :authors)
-        build_association_for(sample_book[:authors]).each do |assoc|
-          book.authors_books.build assoc
+        get_association_for(Author, sample_book[:authors]).each do |assoc|
+          book.book_references.build assoc
         end
+
+        publisher_data = get_association_for(Publisher, sample_book[:publisher]).first
+        book.book_references.build publisher_data
         book.save!
       end
     end
 
-    def self.build_association_for samples
+    def self.get_association_for klass, samples
       samples.inject([]) do |mem, value|
-        if association = Author.find_by(value)
-          mem << {author_id: association.id}
+        if association = klass.find_by(value)
+          mem << {referenceable_id: association.id, referenceable_type: klass.to_s}
         else
           mem
         end

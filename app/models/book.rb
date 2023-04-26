@@ -1,21 +1,21 @@
 class Book < ApplicationRecord
   include Supports::BookSupport
 
-  # attr_reader :book_table
+  has_many :book_references, dependent: :destroy
+  has_one :book_reference, dependent: :destroy
 
-  has_many :authors_books, dependent: :destroy
-  has_many :authors, through: :authors_books
-  belongs_to :publisher
+  has_many :authors, through: :book_references, source: :referenceable, source_type: "Author"
+  has_one :publisher, through: :book_reference, source: :referenceable, source_type: "Publisher"
 
-  validates_presence_of :publisher
-  validate :has_author?
-
+  validate :has_author_and_publisher?
   validates :title, :isbn_13, :list_price, :publication_year, presence: true
 
   private
 
-  def has_author?
-    errors.add(:author, "can't be blank") unless self.authors_books.any?
+  def has_author_and_publisher?
+    referenced = self.book_references.map(&:referenceable_type).uniq
+    errors.add(:author, "can't be blank author") unless referenced.include?("Author")
+    errors.add(:author, "can't be blank") unless referenced.include?("Publisher")
   end
 
   def self.find_by_isbn isbn
