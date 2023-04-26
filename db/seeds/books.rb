@@ -7,7 +7,7 @@ module Seeds
       sample_books = [
         {
           title: "American Elf",
-          isbn_13: "9781891830853",
+          isbn_13: "978-1-891830-85-3",
           list_price: 1000,
           publication_year: 2004,
           edition: "Book 2",
