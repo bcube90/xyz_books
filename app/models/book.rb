@@ -1,22 +1,16 @@
 class Book < ApplicationRecord
   include Supports::BookSupport
 
-  has_many :book_references, dependent: :destroy
-  has_one :book_reference, dependent: :destroy
-
+  has_many :book_references, ->{where(referenceable_type: "Author")}, dependent: :destroy
   has_many :authors, through: :book_references, source: :referenceable, source_type: "Author"
+
+  has_one :book_reference, ->{where(referenceable_type: "Publisher")}, dependent: :destroy
   has_one :publisher, through: :book_reference, source: :referenceable, source_type: "Publisher"
 
   validate :has_author_and_publisher?
   validates :title, :isbn_13, :list_price, :publication_year, presence: true
 
   private
-
-  def has_author_and_publisher?
-    referenced = self.book_references.map(&:referenceable_type).uniq
-    errors.add(:author, "can't be blank author") unless referenced.include?("Author")
-    errors.add(:author, "can't be blank") unless referenced.include?("Publisher")
-  end
 
   def self.find_by_isbn isbn
     isbn = unmask_isbn(isbn)
@@ -29,12 +23,15 @@ class Book < ApplicationRecord
       "undashed_isbn"
     )
 
-    select(book_table[Arel.star], q_unmask_isbn)
+    includes(:book_reference, :authors, :publisher)
+      .select(book_table[Arel.star], q_unmask_isbn)
       .where(q_unmask_isbn.alias.eq(isbn))
       .first
   end
 
-  # def book_table
-  #   @book_table ||= Book.arel_table
-  # end
+  def has_author_and_publisher?
+    referenced = self.book_references.map(&:referenceable_type).uniq
+    errors.add(:author, "can't be blank") unless referenced.include?("Author")
+    errors.add(:publisher, "can't be blank") unless referenced.include?("Publisher")
+  end
 end
