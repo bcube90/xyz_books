@@ -13,6 +13,6 @@ module ApiErrorHandler
   end
 
   def render_bad_request(exception)
-    render json: { message: "#{exception.message} is missing.", status: 400 }, status: :bad_request
+    render json: { message: exception.message, status: 400 }, status: :bad_request
   end
 end

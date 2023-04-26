@@ -13,9 +13,8 @@ class Book < ApplicationRecord
   private
 
   def self.find_by_isbn isbn
-    isbn = unmask_isbn(isbn)
     isbn = change_to_isbn_13(isbn, masked: false) unless isbn.match(ISBN_13_EXPRESSION)
-
+    
     book_table = Book.arel_table
     q_unmask_isbn = Arel::Nodes::NamedFunction.new(
       "REPLACE", 
@@ -23,10 +22,14 @@ class Book < ApplicationRecord
       "undashed_isbn"
     )
 
-    includes(:book_reference, :authors, :publisher)
+    result = includes(:book_reference, :authors, :publisher)
       .select(book_table[Arel.star], q_unmask_isbn)
       .where(q_unmask_isbn.alias.eq(isbn))
       .first
+
+    raise ActiveRecord::RecordNotFound.new, "Record does not exist" unless result
+
+    return result
   end
 
   def has_author_and_publisher?

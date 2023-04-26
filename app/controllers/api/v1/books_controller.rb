@@ -11,10 +11,11 @@ class Api::V1::BooksController < ApiController
   private
 
   def book
-    @book ||= case params.fetch(:id)
-    when /^\d+$/ then Book.find(params.fetch(:id))
-    else
-      Book.find_by_isbn(params.fetch(:id))
-    end
+    return @book if @book
+
+    isbn = Book.validate_isbn(params.fetch(:id))
+    raise ActionController::BadRequest.new, "Invalid ISBN format." unless isbn
+    
+    @book = Book.find_by_isbn(isbn)
   end
 end
