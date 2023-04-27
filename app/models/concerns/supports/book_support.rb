@@ -1,7 +1,7 @@
 module Supports::BookSupport
   extend ActiveSupport::Concern
 
-  ISBN_13_EXPRESSION  = /^\A(978)-?([0-9]{2})-?([0-9]{4})-?([0-9]{3})-?([0-9X]{1})\z$/ix
+  ISBN_13_EXPRESSION  = /^\A(978)-?([0-9]{2})-?([0-9]{4})-?([0-9]{3})-?([0-9]{1})\z$/ix
   ISBN_10_EXPRESSION  = /^\A([0-9])-?([0-9]{3})-?([0-9]{5})-?([0-9X])$\z/ix
   ISBN_9_EXPRESSION   = /^\A[0-9X]{9}\z$/ix
   
@@ -9,7 +9,7 @@ module Supports::BookSupport
     def change_to_isbn_13(isbn_10, masked: true)
       isbn_10 = unmask_isbn(isbn_10)
 
-      if /^\A([0-9]{9})-?([0-9X]?)\z$/ix =~ isbn_10
+      if /^\A([0-9]{9})-?([0-9]?)\z$/ix =~ isbn_10
         digits = $1.split("").map(&:to_i)
         digits.unshift(9,7,8)
         summation = 0

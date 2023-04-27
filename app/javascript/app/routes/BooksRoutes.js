@@ -6,7 +6,7 @@ const BooksRoutes = () => {
   return (
     <Routes>
       <Route element={<Outlet />}>
-        <Route path="show" element={<ShowBook />} />
+        <Route path=":id" element={<ShowBook />} />
       </Route>
 
       <Route path='*' element={<Navigate to="/404" replace />} />

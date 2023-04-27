@@ -78,3 +78,4 @@ group :test do
 end
 
 gem 'activerecord-reset-pk-sequence'
+gem 'rack-cors'

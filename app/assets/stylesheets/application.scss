@@ -12,6 +12,9 @@ $btn-font-size-lg:            1.1rem;
 $accordion-icon-color:               $primary;
 $accordion-icon-color-active:        $primary;
 
+$placeholder-opacity-max:           0.4;
+$placeholder-opacity-min:           0.1;
+
 @import "bootstrap/scss/bootstrap";
 @import "responsive";
 @import "style";
