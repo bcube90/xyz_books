@@ -6,17 +6,19 @@ import { useThemeMode } from "../../utils/providers/ThemeModeProvider";
 
 export default SupportChat = () => {
   const [state, updateState] = useState({
-    top: window.innerHeight - 92
+    top: 868
   });
 
   const {themeState} = useThemeMode()
 
   const updatePosition = () => {
-    const {endOfPage} = themeState.scroll
-    let bottomSpacing = 284;
+    if(themeState.scroll.position < 5) return
 
-    if((endOfPage - (bottomSpacing/2)) >= (window.innerHeight))
-      bottomSpacing = 100
+    const {endOfPage} = themeState.scroll
+    let bottomSpacing = 100;
+
+    if((endOfPage - (bottomSpacing/2)) <= (window.innerHeight))
+      bottomSpacing = 284
     
     updateState({...state, top: window.innerHeight - bottomSpacing});
   }
@@ -24,7 +26,7 @@ export default SupportChat = () => {
   useEffect(() => updatePosition(), [themeState.scroll]);
 
   return (
-    <Button id="support-chat" className="rounded-circle" style={{top: state.top}}>
+    <Button id="support-chat" className="rounded-circle ${}" style={{top: state.top}}>
       <ReactSVG className="support-chat-icon" src="/media/svg/Path-335.svg" />
     </Button>
   );

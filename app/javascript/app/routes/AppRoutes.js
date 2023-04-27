@@ -6,6 +6,7 @@ import SuspensedView from '../utils/SuspensedView';
 
 const AppRoutes = () => {
   const Home = lazy(() => import('../pages/home'))
+  const NotFound = lazy(() => import('../pages/NotFound'))
   const BooksRoutes = lazy(() => import('./BooksRoutes'))
 
   return (
@@ -17,10 +18,15 @@ const AppRoutes = () => {
           } />
 
           <Route path="books/*" element={
-            <SuspensedView><BooksRoutes /></SuspensedView>} /> 
+            <SuspensedView><BooksRoutes /></SuspensedView>
+          } /> 
+
+          <Route path="not-found" element={
+            <SuspensedView><NotFound /></SuspensedView>
+          } />
         </Route>
 
-        <Route path='*' element={<Navigate to="/404" replace />} />
+        <Route path='*' element={<Navigate to="/not-found" replace />} />
       </Routes>
     </BrowserRouter>
   );

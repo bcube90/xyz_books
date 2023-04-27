@@ -236,3 +236,9 @@
     }
   }
 }
+
+
+
+section#main-content:not(.scrolled) + button#support-chat {
+    margin-top: 100px;
+}

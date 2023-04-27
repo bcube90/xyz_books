@@ -12,6 +12,6 @@ Rails.application.routes.draw do
 
   constraints subdomain: ["", "www"] do
     resources :pages, only: [:index]
-    match "*unmatch", to: "pages#index", via: :get
+    match "*unmatch", to: "pages#index", via: :get, constraints: lambda{|request| request.format == "text/html"}
   end
 end

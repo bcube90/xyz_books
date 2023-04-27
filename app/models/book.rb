@@ -7,6 +7,10 @@ class Book < ApplicationRecord
   has_one :book_reference, ->{where(referenceable_type: "Publisher")}, dependent: :destroy
   has_one :publisher, through: :book_reference, source: :referenceable, source_type: "Publisher"
 
+  has_one_attached :image do |attachable|
+    attachable.variant :thumb, resize_to_fill: [416, 450]
+  end
+
   validate :has_author_and_publisher?
   validates_uniqueness_of :isbn_13
   validates :title, :isbn_13, :list_price, :publication_year, presence: true

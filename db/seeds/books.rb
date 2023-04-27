@@ -58,12 +58,37 @@ module Seeds
           publisher: [{name: "McSweeney's"}],
           authors: [
             {first_name: "Rainer", middle_name: "Steel", last_name: "Rilke"}
-          ]
+          ],
+          image: "The-Underwater-Welder.png"
+        }, {
+          title: "The Bend Of Luck ",
+          isbn_13: "978-36-0268-363-5",
+          list_price: 3000,
+          publication_year: 2022,
+          edition: nil,
+          publisher: [{name: "McSweeney's"}],
+          authors: [
+            {first_name: "Hannah", middle_name: "P.", last_name: "Templer"},
+            {first_name: "Marguerite", middle_name: "Z.", last_name: "Duras"}
+          ],
+          image: "The-Bend-of-Luck.png"
+        }, {
+          title: "Doughnuts And Doom",
+          isbn_13: "978-18-6516-038-2",
+          list_price: 3000,
+          publication_year: 2022,
+          edition: nil,
+          publisher: [{name: "McSweeney's"}],
+          authors: [
+            {first_name: "Hannah", middle_name: "P.", last_name: "Templer"},
+            {first_name: "Fannie", middle_name: "Peters", last_name: "Flagg"},
+          ],
+          image: "doughnuts-Doom.png"
         }
       ]
 
       sample_books.each do |sample_book|
-        book = Book.new sample_book.except(:publisher, :authors)
+        book = Book.new sample_book.except(:publisher, :authors, :image)
         get_association_for(Author, sample_book[:authors]).each do |assoc|
           book.book_references.build assoc
         end
@@ -71,6 +96,16 @@ module Seeds
         publisher_data = get_association_for(Publisher, sample_book[:publisher]).first
         book.book_references.build publisher_data
         book.save!
+
+        if sample_book[:image] 
+          puts File.open(Rails.root.join('public', 'media', 'images', sample_book[:image]).to_s)
+          book.image.attach({
+            io: File.open(Rails.root.join('public', 'media', 'images', sample_book[:image]).to_s),
+            filename: sample_book[:image],
+            content_type: "image/png"
+          })
+        end
+        
       end
     end
 

@@ -261,3 +261,19 @@ button#support-chat {
   }
 }
 
+.not-found-holder {
+  background-image: url(/media/images/banner-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  .not-found {
+    height: calc(100vh - 120px);
+
+    h1 {
+      margin-top: -120px;
+      font-size: 65px;
+    }
+  }
+}
+

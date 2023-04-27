@@ -57,7 +57,7 @@ module Supports::BookSupport
     def validate_isbn isbn
       return isbn if validate_isbn_10(isbn)
       return isbn if validate_isbn_13(isbn)
-      # return nil if isbn.match?(/[^0-9X\-]/ix)
+      return isbn if change_to_isbn_13(isbn)
       return nil
     end
 

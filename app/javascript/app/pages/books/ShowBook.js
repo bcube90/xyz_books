@@ -1,34 +1,36 @@
 import React, {useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
-import { debounce } from "debounce";
+import { useParams, useNavigate } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
 import { getBook } from "../../api/services/Book";
 
 defaultBookState = {
   book: {
-    title: null,
-    isbn_13: null,
-    list_price: null,
-    publication_year: null,
-    edition: null,
-    authors: null,
-    publisher: null
+    title: "",
+    isbn_13: "",
+    list_price: "",
+    publication_year: "",
+    edition: "",
+    authors: "",
+    publisher: "",
+    image: "/media/images/no-image.jpg"
   },
   fetchClass: "w-100 placeholder"
 }
 
 export default ShowBook = () => {
   const {id} = useParams();
+  const navigate = useNavigate();
 
   const [bookState, setBookState] = useState(defaultBookState)
 
   useEffect(() => {
     const fetchBook = async () => {
       const {data, status} = await getBook(id)
-      console.log(status, data)
       if(status === 200) 
-        setBookState({...bookState, ...data, fetchClass: null})
+        setBookState({...bookState, ...data, fetchClass: ""})
+      else
+        navigate("/not-found", {replace: true})
     }
 
     setTimeout(fetchBook, 1000)
@@ -42,7 +44,7 @@ export default ShowBook = () => {
             <h1 className="fw-bold fs-1 mt-3 px-3 p-md-0">Search Result</h1>
           </div>
           <div className="col-12 col-md-5 col-lg-4 pt-5">
-            <Image src="/media/images/no-image.jpg" className={`w-100 p-0 ${bookState.fetchClass}`} />
+            <Image src={bookState.book.image} className={`w-100 p-0 ${bookState.fetchClass}`} />
           </div>
           <div className="col-12 col-md-7 col-lg-8 px-4 px-md-3 px-lg-5 pt-5">
             <div className="ms-lg-2">
@@ -52,31 +54,31 @@ export default ShowBook = () => {
               </p>
               <p className={`fs-3 fw-bold mb-1 ${bookState.fetchClass}`} style={{minHeight: 42}}>
                 Edition:
-                 <span className="text-primary"> 
+                 <span className="text-primary ms-3"> 
                   {bookState.book.edition} 
                 </span>
               </p>
               <p className={`fs-3 fw-bold mb-1 ${bookState.fetchClass}`} style={{minHeight: 42}}>
                 Price: 
-                <span className="text-primary"> 
+                <span className="text-primary ms-3"> 
                   {bookState.book.list_price}
                 </span>
               </p>
               <p className={`fs-3 fw-bold mb-1 ${bookState.fetchClass}`} style={{minHeight: 42}}>
                 ISBN: 
-                <span className="text-primary"> 
+                <span className="text-primary ms-3"> 
                   {bookState.book.isbn_13} 
                 </span>
               </p>
               <p className={`fs-3 fw-bold mb-1 ${bookState.fetchClass}`} style={{minHeight: 42}}>
                 Publication Year: 
-                <span className="text-primary"> 
+                <span className="text-primary ms-3"> 
                   {bookState.book.publication_year} 
                 </span>
               </p>
               <p className={`fs-3 fw-bold mb-1 ${bookState.fetchClass}`} style={{minHeight: 42}}>
                 Publisher: 
-                <span className="text-primary"> 
+                <span className="text-primary ms-3"> 
                   {bookState.book.publisher}
                 </span>
               </p>
