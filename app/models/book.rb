@@ -21,8 +21,6 @@ class Book < ApplicationRecord
     isbn = unmask_isbn(isbn)
     isbn = change_to_isbn_13(isbn, masked: false) unless isbn.match?(ISBN_13_EXPRESSION)
 
-    Rails.logger.info("find_by_isbn: #{isbn}" )
-
     book_table = Book.arel_table
     q_unmask_isbn = Arel::Nodes::NamedFunction.new(
       "REPLACE", 

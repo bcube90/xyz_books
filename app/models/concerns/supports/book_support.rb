@@ -23,7 +23,6 @@ module Supports::BookSupport
         digits.push(result > 9 ? 0 : result)
         
         return digits.join unless masked
-        Rails.logger.info("change_to_isbn_13: #{digits}")
         return digits.join.scan(ISBN_13_EXPRESSION).flatten.join('-')
       end
 
@@ -56,7 +55,6 @@ module Supports::BookSupport
     end
 
     def validate_isbn isbn
-      Rails.logger.info("validate_isbn #{isbn}")
       return isbn if validate_isbn_10(isbn)
       return isbn if validate_isbn_13(isbn)
       return nil
@@ -65,16 +63,12 @@ module Supports::BookSupport
     def validate_isbn_10 isbn
       s = t = 0
       digits = unmask_isbn(isbn).split("")
-      
-      Rails.logger.info("digits #{digits}")
 
       digits.each do |value|
         digit = value == "X" ? 10 : value.to_i
         t += digit
         s += t
       end
-
-      Rails.logger.info("s #{s}")
       
       return s % 11 == 0
     end
