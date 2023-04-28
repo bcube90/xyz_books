@@ -35,7 +35,7 @@ Things you may want to cover:
 - Run `bin/div`
 - Visit `http://lvh.me:3000` in the browser
 - You can test the api `http://api.lvh.me:3000/v1/books/:id` with Postman Or similar
-- Books Api `
+- This is the master key `faa2ce220d84ed68a312849cb8b6d24d` for the app. Kindly add it in `config/master.key`
 
 ### Notes
 
