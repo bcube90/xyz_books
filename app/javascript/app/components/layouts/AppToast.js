@@ -13,10 +13,6 @@ const AppToast = () => {
           shown: nextState.valid === 1,
           message: nextState.message
         })
-
-        setTimeout(() => {
-          setToastState({...toastState, shown: false})
-        }, 3000)
       }
     }
     
@@ -28,16 +24,11 @@ const AppToast = () => {
       className="d-inline-block m-1 pages-toast"
       bg={"danger"}
       show={toastState.shown}
-      position="top-end"
       delay={3000}
+      onClose={() => setToastState({toastState, shown: false})}
       autohide
     >
       <Toast.Header>
-        <img
-          src="holder.js/20x20?text=%20"
-          className="rounded me-2"
-          alt=""
-        />
         <strong className="me-auto text-danger">XYZ Books</strong>
       </Toast.Header>
       <Toast.Body className="text-white">
