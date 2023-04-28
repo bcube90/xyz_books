@@ -33,6 +33,9 @@ Things you may want to cover:
 - You might not need to run "Redis", I just added the version just for reference
 - Run `rails db:setup` and `db:migrate`
 - Run `bin/div`
+- Visit `http://lvh.me:3000` in the browser
+- You can test the api `http://api.lvh.me:3000/v1/books/:id` with Postman Or similar
+- Books Api `
 
 ### Notes
 
