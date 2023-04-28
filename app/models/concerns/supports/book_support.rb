@@ -9,7 +9,7 @@ module Supports::BookSupport
     def change_to_isbn_13(isbn_10, masked: true)
       isbn_10 = unmask_isbn(isbn_10)
 
-      if /^\A([0-9]{9})-?([0-9]?)\z$/ix =~ isbn_10
+      if /^\A([0-9]{9})-?([0-9X]?)\z$/ix =~ isbn_10
         digits = $1.split("").map(&:to_i)
         digits.unshift(9,7,8)
         summation = 0
@@ -23,6 +23,7 @@ module Supports::BookSupport
         digits.push(result > 9 ? 0 : result)
         
         return digits.join unless masked
+        Rails.logger.info("change_to_isbn_13: #{digits}")
         return digits.join.scan(ISBN_13_EXPRESSION).flatten.join('-')
       end
 
@@ -55,27 +56,35 @@ module Supports::BookSupport
     end
 
     def validate_isbn isbn
+      Rails.logger.info("validate_isbn #{isbn}")
       return isbn if validate_isbn_10(isbn)
       return isbn if validate_isbn_13(isbn)
-      return isbn if change_to_isbn_13(isbn)
       return nil
     end
 
     def validate_isbn_10 isbn
       s = t = 0
       digits = unmask_isbn(isbn).split("")
-      digits.each_with_index do |value, index|
+      
+      Rails.logger.info("digits #{digits}")
+
+      digits.each do |value|
         digit = value == "X" ? 10 : value.to_i
         t += digit
         s += t
       end
+
+      Rails.logger.info("s #{s}")
       
       return s % 11 == 0
     end
 
     def validate_isbn_13 isbn
       multiple = summation = 0
+      
       digits = unmask_isbn(isbn).split("")
+
+      return false if digits.count != 13
 
       digits.each_with_index do |value, index|
         next if (index + 1).odd?
@@ -86,17 +95,11 @@ module Supports::BookSupport
 
       digits.each_with_index do |value, index|
         next if (index + 1).even?
-        summation += value.to_i
+        summation += index == 12 && value.to_i == 0 ? 10 : value.to_i
       end
 
       summation % 10 == 0
     end
-  end
-
-  def validate_isbn_13
-    multiple = summation = 0
-    digits = unmask_isbn(isbn).split("")
-    digits.filter.with_index{ |value, index| (index + 1).even? }
   end
 
   def to_isbn_10

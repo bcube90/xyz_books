@@ -9,7 +9,7 @@ const BooksRoutes = () => {
         <Route path=":id" element={<ShowBook />} />
       </Route>
 
-      <Route path='*' element={<Navigate to="/404" replace />} />
+      <Route path='*' element={<Navigate to="/not_found" replace />} />
     </Routes>
   );
 }

@@ -7,10 +7,10 @@ import SupportChat from "./components/layouts/SupportChat";
 import { HeaderBannerCTA } from "./components/layouts/header/HeaderBannerCTA";
 import { ThemeModeProvider } from "./utils/providers/ThemeModeProvider";
 import { MainContent } from "./components/layouts/MainContent";
+import { AppToast } from "./components/layouts/AppToast";
 
 
 const App = () => {
-  
   return (
     <ThemeModeProvider>
       <HeaderBannerCTA />
@@ -21,6 +21,8 @@ const App = () => {
       <FooterLayout />
 
       <SupportChat />
+
+      <AppToast />
     </ThemeModeProvider>
   );
 }

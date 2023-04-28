@@ -1,8 +1,8 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  Rails.application.config.hosts << "lvh.me"
-  Rails.application.config.hosts << "api.lvh.me"
+  Rails.application.config.hosts << "lvh.me:3000"
+  Rails.application.config.hosts << "api.lvh.me:3000"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time

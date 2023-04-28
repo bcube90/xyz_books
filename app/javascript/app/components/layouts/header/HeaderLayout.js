@@ -1,8 +1,9 @@
 import React from 'react';
 import { ReactSVG } from "react-svg";
-import { Nav, Navbar, Button, Form } from 'react-bootstrap';
+import { Nav, Navbar, Button } from 'react-bootstrap';
 
 import { useThemeMode } from '../../../utils/providers/ThemeModeProvider';
+import { HeaderSearchForm } from './HeaderSearchForm';
 
 export default HeaderLayout = () => {
   const {scrollClass} = useThemeMode();
@@ -15,12 +16,9 @@ export default HeaderLayout = () => {
             <ReactSVG src="/media/svg/sample-logo.svg" />
           </Navbar.Brand>
           
-          <Form className="position-relative">
-            <Form.Group controlId="search-input">
-              <ReactSVG className="seach-icon" src="/media/svg/Icon-feather-search.svg" />
-              <Form.Control className="rounded-pill" bsPrefix="border-primary form-control" variant="primary" type="text" placeholder="Search" />
-            </Form.Group>
-          </Form>
+          <div className="header-search-container">
+          <HeaderSearchForm />
+          </div>
           
           <Navbar.Toggle aria-controls="navbar-toggle" />
           <Navbar.Collapse id="navbar-container">

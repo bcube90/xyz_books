@@ -3,11 +3,12 @@ import { AppRoutes } from './routes/AppRoutes';
 import React from 'react';
 import axios from 'axios';
 
-import { setupAxios } from './api/setup';
+import { setupAxiosRequest, setupAxiosResponse } from './api/setup';
 
 
 
-setupAxios(axios)
+setupAxiosRequest(axios)
+setupAxiosResponse(axios)
 
 
 const container = document.getElementById('root');

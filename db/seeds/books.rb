@@ -62,7 +62,7 @@ module Seeds
           image: "The-Underwater-Welder.png"
         }, {
           title: "The Bend Of Luck ",
-          isbn_13: "978-36-0268-363-5",
+          isbn_13: "978-12-3509-787-4",
           list_price: 3000,
           publication_year: 2022,
           edition: nil,

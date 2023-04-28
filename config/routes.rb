@@ -7,7 +7,7 @@ Rails.application.routes.draw do
         resources :books, only: [:show], subdomain: 'api'
       end
     end
-    match "*unmatch", to: "api_controller#index", via: :get
+    match "*unmatch", to: "api_controller#index", via: :get, constraints: lambda{|request| request.subdomain == "api"}
   end
 
   constraints subdomain: ["", "www"] do

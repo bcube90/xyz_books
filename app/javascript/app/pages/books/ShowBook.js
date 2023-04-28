@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
 import { getBook } from "../../api/services/Book";
+import headerSearchBloc from "../../utils/blocs/HeaderSearchFormBloc";
 
 defaultBookState = {
   book: {
@@ -24,17 +25,20 @@ export default ShowBook = () => {
 
   const [bookState, setBookState] = useState(defaultBookState)
 
+ 
   useEffect(() => {
     const fetchBook = async () => {
       const {data, status} = await getBook(id)
       if(status === 200) 
         setBookState({...bookState, ...data, fetchClass: ""})
-      else
+      else {
         navigate("/not-found", {replace: true})
+        headerSearchBloc.subject.next({valid: 1, message: data.message, isbn: ""})
+      }
     }
+    fetchBook()
+  }, [id]);
 
-    setTimeout(fetchBook, 1000)
-  }, [])
 
   return (
     <div className="book-info">
