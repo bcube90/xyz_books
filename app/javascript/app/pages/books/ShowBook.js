@@ -28,9 +28,11 @@ export default ShowBook = () => {
  
   useEffect(() => {
     const fetchBook = async () => {
+      setBookState(defaultBookState)
+      
       const {data, status} = await getBook(id)
-      if(status === 200) 
-        setBookState({...bookState, ...data, fetchClass: ""})
+      if(status === 200)
+        setTimeout(() => setBookState({...bookState, ...data, fetchClass: ""}), 1000)
       else {
         navigate("/not-found", {replace: true})
         headerSearchBloc.subject.next({valid: 1, message: data.message, isbn: ""})

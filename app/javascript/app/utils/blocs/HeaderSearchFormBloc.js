@@ -1,5 +1,4 @@
 import { BehaviorSubject } from "rxjs"
-import { debounce } from "debounce";
 
 const DefaultSearchState = {
   valid: 0,
@@ -10,19 +9,22 @@ const DefaultSearchState = {
 class HeaderSearchFormBloc {
   constructor() {
     this.subject = new BehaviorSubject(DefaultSearchState);
-    this.searchISBN = debounce(this.searchISBN, 1000);
   }
 
-  searchISBN({target}) {
-    if(!target.value) {
+  onFormSumbit() {
+
+  }
+
+  searchISBN(searchValue) {
+    if(!searchValue) {
       this.subject.next({valid: 0, message: "", isbn: ""});
       return
     }
 
-    const unmaskedIsbn = target.value.replace(/[^0-9X]/g, "");
+    const unmaskedIsbn = searchValue.replace(/[^0-9X]/g, "");
     const isbnElements = unmaskedIsbn.split('');
     if(this.isValidISBN(isbnElements)) {
-      this.subject.next({valid: 2, message: "", isbn: target.value});
+      this.subject.next({valid: 2, message: "", isbn: searchValue});
     } else {
       this.subject.next({valid: 1, message: "Invalid ISBN format."});
     }
