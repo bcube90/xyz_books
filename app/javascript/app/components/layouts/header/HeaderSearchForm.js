@@ -18,8 +18,6 @@ const HeaderSearchForm = () => {
     }
     
     headerSearchBloc.subject.subscribe(blocListner)
-
-    console.log("searchState", searchState)
   }, [])
   
   return (
