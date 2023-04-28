@@ -39,10 +39,10 @@ Things you may want to cover:
 
 ### Notes
 
-The application is configured to with React and Rails. Frontend is hosted by Rails
-in this setup with different port constraints. Adding the `lvh.me` and `api.lvh.me` is needed
-so routes can properly distinguish request. ImageMagick is needed also since I used
-ActiveStorage for books with image.
+The application is configured with React and Rails. Frontend is hosted by Rails
+in this setup with different subdomain constraints. Adding the `lvh.me` and `api.lvh.me` is needed
+so routes can properly distinguish requests. ImageMagick is needed also since I used
+ActiveStorage for seeding books with image.
 
 To display all the books ISBN_13's and Converted ISBN_10's:
 - run `Book.all.map {|b| [b.isbn_13, b.to_isbn_10]}` in the console.
