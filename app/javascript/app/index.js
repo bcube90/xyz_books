@@ -5,14 +5,11 @@ import axios from 'axios';
 
 import { setupAxiosRequest, setupAxiosResponse } from './api/setup';
 
-
-
 setupAxiosRequest(axios)
 setupAxiosResponse(axios)
 
 
 const container = document.getElementById('root');
 
-createRoot(container).render(<AppRoutes />
-);
+createRoot(container).render(<AppRoutes />);
 

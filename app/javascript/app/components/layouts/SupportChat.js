@@ -17,7 +17,7 @@ export default SupportChat = () => {
     const {endOfPage} = themeState.scroll
     let bottomSpacing = 100;
 
-    if((endOfPage - (bottomSpacing/2)) <= (window.innerHeight))
+    if((endOfPage) - (bottomSpacing/2) - 50 <= (window.innerHeight))
       bottomSpacing = 284
     
     updateState({...state, top: window.innerHeight - bottomSpacing});
