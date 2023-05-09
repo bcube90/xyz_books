@@ -25,7 +25,6 @@ export default ShowBook = () => {
 
   const [bookState, setBookState] = useState(defaultBookState)
 
- 
   useEffect(() => {
     const fetchBook = async () => {
       setBookState(defaultBookState)
@@ -38,6 +37,7 @@ export default ShowBook = () => {
         headerSearchBloc.subject.next({valid: 1, message: data.message, isbn: ""})
       }
     }
+    
     fetchBook()
   }, [id]);
 
